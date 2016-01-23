@@ -1,0 +1,32 @@
+{
+  "name": "aqicalc-js",
+  "version": "1.0.0",
+  "description": "Air Quality Index (AQI) Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkpoon/aqicalc-js.git"
+  },
+  "keywords": [
+    "AQI",
+    "Air",
+    "Quality",
+    "Haze",
+    "PM2.5"
+  ],
+  "author": "K.K. POON <noopkk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kkpoon/aqicalc-js/issues"
+  },
+  "homepage": "https://github.com/kkpoon/aqicalc-js#readme",
+  "dependencies": {
+    "d3": "^3.5.13"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.8.2"
+  }
+}
