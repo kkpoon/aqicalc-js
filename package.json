@@ -1,32 +1,50 @@
 {
-  "name": "aqicalc-js",
-  "version": "1.0.0",
-  "description": "Air Quality Index (AQI) Calculator",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kkpoon/aqicalc-js.git"
-  },
-  "keywords": [
-    "AQI",
-    "Air",
-    "Quality",
-    "Haze",
-    "PM2.5"
-  ],
-  "author": "K.K. POON <noopkk@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kkpoon/aqicalc-js/issues"
-  },
-  "homepage": "https://github.com/kkpoon/aqicalc-js#readme",
-  "dependencies": {
-    "d3": "^3.5.13"
-  },
-  "devDependencies": {
-    "jest-cli": "^0.8.2"
-  }
+    "name": "aqicalc-js",
+    "version": "1.0.0",
+    "description": "Air Quality Index (AQI) Calculator",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kkpoon/aqicalc-js.git"
+    },
+    "keywords": [
+        "AQI",
+        "Air",
+        "Quality",
+        "Haze",
+        "PM2.5"
+    ],
+    "author": "kkpoon <noopkk@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kkpoon/aqicalc-js/issues"
+    },
+    "homepage": "https://github.com/kkpoon/aqicalc-js#readme",
+    "dependencies": {
+        "@types/d3-scale": "^1.0.9",
+        "d3-scale": "^1.0.6"
+    },
+    "devDependencies": {
+        "@types/jest": "^19.2.3",
+        "codecov": "^2.2.0",
+        "jest": "^20.0.4",
+        "ts-jest": "^20.0.4",
+        "typescript": "^2.3.3"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+        },
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+        "moduleFileExtensions": [
+            "ts",
+            "js",
+            "json"
+        ]
+    }
 }

@@ -1,5 +1,9 @@
 # aqicalc-js
-this is a utility to calculate Air Quality Index (AQI) with the input of concentration of the six main pollutants.
+
+[![Build Status](https://travis-ci.org/kkpoon/aqicalc-js.svg?branch=master)](https://travis-ci.org/kkpoon/aqicalc-js)
+[![codecov](https://codecov.io/gh/kkpoon/aqicalc-js/branch/master/graph/badge.svg)](https://codecov.io/gh/kkpoon/aqicalc-js)
+
+This is a utility to calculate Air Quality Index (AQI) with the input of concentration of the six main pollutants.
 
 ## References
 
