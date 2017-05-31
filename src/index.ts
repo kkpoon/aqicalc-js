@@ -24,18 +24,34 @@ export interface AirQualityIndexComponents {
     PM2_5: number;
 }
 
-export const ChinaAQICalc = (components: AirQualityIndexComponents) =>
+export interface PrimaryPollutantValue {
+    aqi: number;
+    pollutant: string;
+}
+
+export const ChinaAQICalc = (components: AirQualityIndexComponents): PrimaryPollutantValue[] =>
     [
-        { aqi: IAQI_Scale.domain(SO2_SCALE)(components.SO2), primary: "SO2" },
-        { aqi: IAQI_Scale.domain(NO2_SCALE)(components.NO2), primary: "NO2" },
-        { aqi: IAQI_Scale.domain(PM10_SCALE)(components.PM10), primary: "PM10" },
-        { aqi: IAQI_Scale.domain(CO_SCALE)(components.CO), primary: "CO" },
-        { aqi: IAQI_Scale.domain(O3_SCALE)(components.O3), primary: "O3" },
-        { aqi: IAQI_Scale.domain(PM25_SCALE)(components.PM2_5), primary: "PM2.5" }
+        { aqi: IAQI_Scale.domain(SO2_SCALE)(components.SO2), pollutant: "SO2" },
+        { aqi: IAQI_Scale.domain(NO2_SCALE)(components.NO2), pollutant: "NO2" },
+        { aqi: IAQI_Scale.domain(PM10_SCALE)(components.PM10), pollutant: "PM10" },
+        { aqi: IAQI_Scale.domain(CO_SCALE)(components.CO), pollutant: "CO" },
+        { aqi: IAQI_Scale.domain(O3_SCALE)(components.O3), pollutant: "O3" },
+        { aqi: IAQI_Scale.domain(PM25_SCALE)(components.PM2_5), pollutant: "PM2.5" }
     ]
         .map((d) => Object.assign({}, d, { aqi: AQI_Constraint(d.aqi) }))
-        .reduce((a, b) =>
-            a.aqi <= b.aqi ?
-                Object.assign({}, b, { aqi: Math.round(b.aqi) })
-                : Object.assign({}, a, { aqi: Math.round(a.aqi) })
-        );
+        .filter((d) => d.aqi > 0)
+        .reduce((a, b) => {
+            if (a.length === 0) {
+                return [b];
+            } else {
+                let head = a[0];
+                if (head.aqi < b.aqi) {
+                    return [b];
+                } else if (head.aqi > b.aqi) {
+                    return a;
+                } else {
+                    return a.concat([b]);
+                }
+            }
+        }, [])
+        .map((d) => Object.assign({}, d, { aqi: Math.round(d.aqi) }));
